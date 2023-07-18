@@ -1,4 +1,15 @@
+server:
+  port: '8082'
+
 spring:
+  profiles:
+    active: qa
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
@@ -8,7 +19,35 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: 'true'
-welcome:
-  message: This is a Spring demo!
-server:
-  port: '8082'
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/greeneapp-prod
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/greeneapp-qa
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
